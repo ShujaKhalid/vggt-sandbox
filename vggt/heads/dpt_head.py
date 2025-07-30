@@ -143,6 +143,7 @@ class DPTHead(nn.Module):
         # Otherwise, process frames in chunks to manage memory usage
         assert frames_chunk_size > 0
 
+
         # Process frames in batches
         all_preds = []
         all_conf = []
@@ -209,6 +210,9 @@ class DPTHead(nn.Module):
             if frames_start_idx is not None and frames_end_idx is not None:
                 x = x[:, frames_start_idx:frames_end_idx]
 
+            print(patch_start_idx, frames_start_idx, frames_end_idx)
+            print(x.shape)
+            print(x)
             x = x.view(B * S, -1, x.shape[-1])
 
             x = self.norm(x)
